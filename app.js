@@ -84,7 +84,7 @@ let inputForm = null;
 /**
  * Image file path
  * @param {String} species file prefix
- * @returns {String} full image path 
+ * @returns {String} full image path
  */
 function loadImg (species) {
     return `images/${ species.toLowerCase() }.png`;
@@ -100,9 +100,9 @@ function Dino (dinoObj) {
     let imgSrc = loadImg(properties.species);
 
     /**
-     * Compare with human in weight 
+     * Compare with human in weight
      * @param {Object} humanObj human statistics data
-     * @returns {String} compare result 
+     * @returns {String} compare result
      */
     function _compareWeight(humanObj) {
         if (humanObj.getWeight() === properties.weight) {
@@ -117,7 +117,7 @@ function Dino (dinoObj) {
     /**
      * Compare with human in height
      * @param {Object} humanObj human statistics data
-     * @returns {String} compare result 
+     * @returns {String} compare result
      */
     function _compareHeight(humanObj) {
         if (humanObj.getHeight() === properties.height) {
@@ -132,7 +132,7 @@ function Dino (dinoObj) {
     /**
      * Compare with human in diet
      * @param {Object} humanObj human statistics data
-     * @returns {String} compare result 
+     * @returns {String} compare result
      */
     function _compareDiet(humanObj) {
         if (!humanObj.getDiet().localeCompare(properties.diet)) {
@@ -176,13 +176,13 @@ function Dino (dinoObj) {
 
     // using array function to encapsulate private function
     let functions = [
-        (humanObj) => _compareWeight(humanObj), 
+        (humanObj) => _compareWeight(humanObj),
         (humanObj) => _compareHeight(humanObj),
-        (humanObj) => _compareDiet(humanObj), 
-        (humanObj = null) => _getWeight(humanObj), 
-        (humanObj = null) => _getHeight(humanObj), 
-        (humanObj = null) => _getDiet(humanObj), 
-        (humanObj = null) => _getWhere(humanObj), 
+        (humanObj) => _compareDiet(humanObj),
+        (humanObj = null) => _getWeight(humanObj),
+        (humanObj = null) => _getHeight(humanObj),
+        (humanObj = null) => _getDiet(humanObj),
+        (humanObj = null) => _getWhere(humanObj),
         (humanObj = null) => _getWhen(humanObj),
         (humanObj = null) => _getFact(humanObj)
     ];
@@ -190,7 +190,7 @@ function Dino (dinoObj) {
     /**
      * Randomly choose one from compare methods and six types methods
      * @param {Number} index specify index of choice, if -1 then choose randomly
-     * @returns {Object} chosen result 
+     * @returns {Object} chosen result
      */
     function _pickOne(index = -1) {
         if (index == -1) {
@@ -204,7 +204,7 @@ function Dino (dinoObj) {
 
     /**
      * Get array of functions for showing statistics data
-     * @returns {Array} array of statistics functions 
+     * @returns {Array} array of statistics functions
      */
     function _getFunctions() {
         return functions.slice(3);
@@ -221,7 +221,7 @@ function Dino (dinoObj) {
 /**
  * Create human object
  * @param {Object} humanObj human statistics data
- * @returns {Object} human object 
+ * @returns {Object} human object
  */
 function Human (humanObj) {
     let properties = humanObj;
@@ -306,7 +306,7 @@ function removeForm() {
 /**
  * Create tile for human object
  * @param {Object} humanObj input human object
- * @returns {Object} div object for human tile 
+ * @returns {Object} div object for human tile
  */
 function createHumanTile(humanObj) {
     let cell = document.createElement("div");
@@ -326,7 +326,7 @@ function createHumanTile(humanObj) {
  * Create tile for dino object
  * @param {Object} dinoObj input dino object
  * @param {Object} humanObj input human object for comparison
- * @returns {Object} div object for dino tile 
+ * @returns {Object} div object for dino tile
  */
 function createDinoTile(dinoObj, humanObj) {
     let cell = document.createElement("div");
@@ -352,7 +352,7 @@ function createDinoTile(dinoObj, humanObj) {
 /**
  * Create pop up statistics tile per object
  * @param {Object} inputObj given creature object
- * @returns {Object} div object for statistics tile 
+ * @returns {Object} div object for statistics tile
  */
 function createStatistics(inputObj) {
     let cell = document.createElement("div");
@@ -395,9 +395,9 @@ function insertTiles(humanObj) {
             localDinors = localDinors.slice(0, chosenIndex).concat(localDinors.slice(chosenIndex+1));
         }
         newTile.onmouseover = function() {
-            newStatisticTile.style.display = "block";
             newStatisticTile.style.left = newTile.offsetLeft.toString().concat("px");
             newStatisticTile.style.top = newTile.offsetTop.toString().concat("px");
+            newStatisticTile.style.display = "inline-block";
         };
         newTile.onmouseout = function() {
             newStatisticTile.style.display = "none";
@@ -419,10 +419,10 @@ function validateForm() {
     } else if (inputs.name.value.search(/^[a-zA-Z_]{1}.*/) === -1) {
         errorText = "name has to start with valid alphabets or underscore";
     } else if (!inputs.feet.value || parseFloat(inputs.feet.value) !== parseFloat(inputs.feet.value)
-        || parseFloat(inputs.feet.value) <= 0 || !inputs.inches.value 
-        || parseFloat(inputs.inches.value) !== parseFloat(inputs.inches.value) 
-        || parseFloat(inputs.inches.value) <= 0 || !inputs.weight.value 
-        || parseFloat(inputs.weight.value) !== parseFloat(inputs.weight.value) 
+        || parseFloat(inputs.feet.value) <= 0 || !inputs.inches.value
+        || parseFloat(inputs.inches.value) !== parseFloat(inputs.inches.value)
+        || parseFloat(inputs.inches.value) <= 0 || !inputs.weight.value
+        || parseFloat(inputs.weight.value) !== parseFloat(inputs.weight.value)
         || parseFloat(inputs.weight.value) <= 0) {
         errorText = "feet, inches, weight must be a valid number";
     }
